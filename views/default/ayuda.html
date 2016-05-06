@@ -1,0 +1,58 @@
+{{extend 'layout.html'}}
+<div>
+    <p style="text-align: center" >
+
+    Bienvenido a la página de ayuda de la aplicación SEUNOVA. Por favor haga clic sobre el aspecto que desea conocer
+    </p>
+</div>
+
+
+
+<a href="{{=URL('static', 'doc/delphi.pdf')}}"><h5>-¿Qué es el método Delphi?</h5></a>
+
+
+
+<div class="1" id="1"><h5>-Registrarse</h5></div>
+<div class="2" id="2" style="display: none;">En la aplicación solo es pública para todos los usuarios la funcionalidad que permite ver las solicitudes pública mediante
+    la opción Ver solicitudes generales dentro del menú Solicitudes.
+Para acceder a las demás funcionalidades debe ser un usuario registrado y tener determinado rol.
+Primero debe dirigirse al menú de la esquina superior derecha titulado "Acceder", dentro tiene la opción "Registrarse", acceda a ella
+ y llene los campos. Si usted necesita tener un rol específico como administrador o experto debe contactar a la administración
+del sitio para efectuar dicho cambio. Mientras ya puede ir creando solicitudes.</div>
+
+<div class="3" id="3"><h5>-Gestionar solicitudes</h5></div>
+<div class="4" id="4" style="display: none;">Para crear solicitudes de evaluaciones de proyecto debe primero haberse autenticado en el sistema una vez
+que usted sea usuario registrado. Primeramente diríjase en el menú titulado "Solicitudes" a la opción "Crear solicitud". Le aparecerá un asistente
+que le guiará durante el proceso. Llene los campos de manera correcta y luego de crear la solicitud seleccione la categoría a la que pertenecerá. Una vez
+hecho esto pasa a insertar los aspectos que desea se le evalúen en su aplicación.
+Si usted desea editar alguna de sus solicitudes o ver el estado en el que se encuentra diríjase a la opción Mis solicitudes del menú de Solicitudes. Ahí se listarán todas
+las solicitudes que usted haya creado y podrá editarlas, eliminarlas, verlas detalladamente, listar los aspectos que se van a evaluar, incluso ver las evaluaciones
+que han recibido esos aspectos. </div>
+
+<div class="5" id="5"><h5>-Gestionar aspectos</h5></div>
+<div class="6" id="6" style="display: none;">Para gestionar los aspectos de su solicitud esta debe de estar aún por ser aceptada, ya que una vez aceptada no podrá hacer
+cambios de ningún tipo en los aspectos que se le van a evaluar. Diríjase a la opción Mis solicitudes del menú Solicitudes y busque la solicitud sobre la que desee
+hacer los cambios. Haga clic sobre el vínculo Aspectos asociado a esa solicitud, de poder efectuar cambios en los aspectos aparecerán los botones Editar y Eliminar
+ sino no es que ya se aceptó la solicitud y no podrá realizar cambios. Si desea agregar un aspecto que no aparecía en la lista a la hora de seleccionarlos en el
+asistente, suba un archivo de texto detallando el aspecto que quiere usted se agregue y la justificación de por qué quiere agregarlo.</div>
+
+<a href="{{=URL('static', 'doc/manual.pdf')}}"><h5>-Consultar manual de usuario</h5></a>
+<script>
+$("#1").click(function(){
+$("#2").css("display", "block");
+$("#4").hide("slow");
+$("#6").hide("slow");
+})
+
+$("#3").click(function(){
+$("#4").css("display", "block");
+$("#2").hide("slow");
+$("#6").hide("slow");
+})
+
+$("#5").click(function(){
+$("#6").css("display", "block");
+$("#2").hide("slow");
+$("#4").hide("slow");
+})
+</script>

@@ -1,0 +1,27 @@
+__author__ = 'Miguel Antonio'
+
+mostrarmenu2()
+
+@auth.requires_membership(role="Administrador")
+def usuarios():
+    form = SQLFORM.smartgrid(db.auth_user)
+    return dict(form=form)
+
+@auth.requires_membership(role="Administrador")
+def categorias():
+    form2 = SQLFORM.smartgrid(db.categorias)
+    return dict(form2=form2)
+
+@auth.requires_membership(role="Administrador")
+def aspectos():
+    form3 = SQLFORM.grid(db.aspectos)
+    return dict(form3=form3)
+
+@auth.requires_membership(role="Administrador")
+def solicitudes():
+    db.solicitudes.estado.writable=True
+    db.solicitudes.estado.readable=True
+    db.solicitudes.publico.writable=False
+    db.solicitudes.observaciones.writable=True
+    form4 = SQLFORM.smartgrid(db.solicitudes,create=False)
+    return dict(form4=form4)

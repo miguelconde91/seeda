@@ -1,0 +1,299 @@
+timestamp: 2016-05-05T18:45:02.510513
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    username CHAR(128),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2016-05-05T18:45:02.710414
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2016-05-05T18:45:02.858139
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2016-05-05T18:45:03.025831
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2016-05-05T18:45:03.167771
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2016-05-05T18:45:03.331027
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2016-05-05T18:45:03.490546
+CREATE TABLE aspectos(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    aspecto CHAR(512) UNIQUE
+);
+success!
+timestamp: 2016-05-05T18:45:03.644120
+CREATE TABLE solicitudes(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    proyecto CHAR(512),
+    archivos CHAR(512),
+    estado CHAR(512),
+    fecha TIMESTAMP,
+    publico CHAR(512),
+    observaciones TEXT,
+    id_usuario INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2016-05-05T18:45:03.801113
+CREATE TABLE aspectossolicitud(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_solicitudes INTEGER REFERENCES solicitudes (id) ON DELETE CASCADE,
+    id_aspecto INTEGER REFERENCES aspectos (id) ON DELETE CASCADE,
+    evaluacionfinal CHAR(512)
+);
+success!
+timestamp: 2016-05-05T18:45:03.987112
+CREATE TABLE expertosasociados(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_solicitudes INTEGER REFERENCES solicitudes (id) ON DELETE CASCADE,
+    id_usuario INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2016-05-05T18:45:04.153472
+CREATE TABLE evaluaciones(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_solicitudes INTEGER REFERENCES solicitudes (id) ON DELETE CASCADE,
+    id_aspectossolicitud INTEGER REFERENCES aspectossolicitud (id) ON DELETE CASCADE,
+    id_experto INTEGER REFERENCES expertosasociados (id) ON DELETE CASCADE,
+    evaluacion CHAR(512),
+    delphi CHAR(512)
+);
+success!
+timestamp: 2016-05-05T18:45:04.321917
+CREATE TABLE valores(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    valor DOUBLE UNIQUE,
+    idnea DOUBLE
+);
+success!
+timestamp: 2016-05-05T18:45:04.651888
+CREATE TABLE tabla1(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    year INTEGER UNIQUE,
+    azucar DOUBLE,
+    cacao DOUBLE,
+    cafe DOUBLE,
+    copra DOUBLE
+);
+success!
+timestamp: 2016-05-05T18:45:04.830526
+CREATE TABLE tabla2(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    producto CHAR(512),
+    year INTEGER,
+    kilogramos CHAR(512),
+    valor CHAR(512)
+);
+success!
+timestamp: 2016-05-05T18:45:04.994541
+CREATE TABLE tabla3(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    producto CHAR(512),
+    year INTEGER,
+    kilogramos CHAR(512),
+    valor CHAR(512)
+);
+success!
+success!
+success!
+timestamp: 2016-05-05T21:37:09.001316
+CREATE TABLE tabla4(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    producto TEXT,
+    year INTEGER,
+    kilogramos CHAR(512),
+    valor CHAR(512)
+);
+success!
+timestamp: 2016-05-05T21:37:09.185147
+CREATE TABLE tabla5(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    producto TEXT,
+    year INTEGER,
+    kilogramos CHAR(512),
+    valor CHAR(512)
+);
+success!
+timestamp: 2016-05-05T21:37:09.358307
+CREATE TABLE tabla6(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    producto TEXT,
+    year INTEGER,
+    kilogramos CHAR(512),
+    valor CHAR(512)
+);
+success!
+timestamp: 2016-05-05T21:37:09.516798
+CREATE TABLE tabla7(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    producto TEXT,
+    year INTEGER,
+    kilogramos CHAR(512),
+    valor CHAR(512)
+);
+success!
+timestamp: 2016-05-05T21:52:38.703955
+ALTER TABLE tabla4 ADD destino TEXT;
+success!
+timestamp: 2016-05-05T21:52:38.924691
+ALTER TABLE tabla5 ADD origen TEXT;
+success!
+timestamp: 2016-05-05T21:52:39.104619
+ALTER TABLE tabla6 ADD destino TEXT;
+success!
+timestamp: 2016-05-05T21:52:39.267985
+ALTER TABLE tabla7 ADD origen TEXT;
+success!
+timestamp: 2016-05-05T21:59:58.511001
+CREATE TABLE tabla4(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    producto TEXT,
+    destino TEXT,
+    year INTEGER,
+    kilogramos CHAR(512),
+    valor CHAR(512)
+);
+success!
+timestamp: 2016-05-05T21:59:58.691596
+CREATE TABLE tabla5(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    producto TEXT,
+    origen TEXT,
+    year INTEGER,
+    kilogramos CHAR(512),
+    valor CHAR(512)
+);
+success!
+timestamp: 2016-05-05T21:59:58.857889
+CREATE TABLE tabla6(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    producto TEXT,
+    destino TEXT,
+    year INTEGER,
+    kilogramos CHAR(512),
+    valor CHAR(512)
+);
+success!
+timestamp: 2016-05-05T21:59:59.026492
+CREATE TABLE tabla7(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    producto TEXT,
+    origen TEXT,
+    year INTEGER,
+    kilogramos CHAR(512),
+    valor CHAR(512)
+);
+success!
+timestamp: 2016-05-05T22:02:59.009626
+ALTER TABLE tabla1 ADD año INTEGER UNIQUE;
+timestamp: 2016-05-05T22:03:32.357450
+ALTER TABLE tabla1 ADD año INTEGER UNIQUE;
+timestamp: 2016-05-05T22:15:19.942689
+CREATE TABLE tabla6(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    producto TEXT,
+    year INTEGER,
+    kilogramos CHAR(512),
+    valor CHAR(512)
+);
+timestamp: 2016-05-05T22:15:20.495973
+CREATE TABLE tabla6(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    producto TEXT,
+    year INTEGER,
+    kilogramos CHAR(512),
+    valor CHAR(512)
+);
+timestamp: 2016-05-05T22:15:20.670101
+CREATE TABLE tabla6(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    producto TEXT,
+    year INTEGER,
+    kilogramos CHAR(512),
+    valor CHAR(512)
+);
+timestamp: 2016-05-05T22:15:21.293285
+CREATE TABLE tabla6(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    producto TEXT,
+    year INTEGER,
+    kilogramos CHAR(512),
+    valor CHAR(512)
+);
+timestamp: 2016-05-05T22:15:23.864124
+CREATE TABLE tabla6(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    producto TEXT,
+    year INTEGER,
+    kilogramos CHAR(512),
+    valor CHAR(512)
+);
+timestamp: 2016-05-05T22:15:24.633233
+CREATE TABLE tabla6(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    producto TEXT,
+    year INTEGER,
+    kilogramos CHAR(512),
+    valor CHAR(512)
+);
+timestamp: 2016-05-05T22:18:25.258757
+CREATE TABLE tabla6(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    producto TEXT,
+    year INTEGER,
+    kilogramos CHAR(512),
+    valor CHAR(512)
+);
+success!
+timestamp: 2016-05-05T22:18:25.495659
+CREATE TABLE tabla7(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    producto TEXT,
+    year INTEGER,
+    kilogramos CHAR(512),
+    valor CHAR(512)
+);
+success!
+timestamp: 2016-05-06T14:04:01.076000
+ALTER TABLE evaluaciones ADD ronda CHAR(512);
+timestamp: 2016-05-06T14:04:01.167000
+ALTER TABLE evaluaciones ADD evaluacion2 CHAR(512);
+success!

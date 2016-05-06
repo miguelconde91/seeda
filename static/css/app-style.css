@@ -1,0 +1,42 @@
+/*@media (min-height: 1024px) {*/
+/*.app-body {*/
+/*background: #b5d2ff;*/
+/*background: linear-gradient(white, #b5d2ff) repe;*/
+/*}*/
+/*}*/
+
+
+.app-icono {
+    margin: 15px;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border: double 3px white;
+}
+
+.app-icono-programa {
+    background-color: #363738;
+}
+
+.app-icono-proyeccion {
+    background-color: #363738;
+}
+
+.app-icono-parametros {
+    background-color: #363738;
+}
+
+.app-icono-indicadores {
+    background-color: #363738;
+}
+
+.app-icono-hover {
+    background-color: #0099ff;
+    border-radius: 10px;
+    /*border: solid 3px white;*/
+    margin-top: 2px;
+}
+
+.page-header {
+    text-align: center;
+}
